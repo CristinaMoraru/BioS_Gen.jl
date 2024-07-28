@@ -1,5 +1,9 @@
 module BioS_Gen
+using DataFrames
+using StringAlgorithms: longestcommonsubstring
 
-# Write your package code here.
+include("BioS_Gen_funs.jl")
+include("BioS_Gen_DataTypes.jl")
+include("BioS_Gen_fun_DT-dep.jl")
 
-end
+end #module

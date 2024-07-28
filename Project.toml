@@ -3,5 +3,9 @@ uuid = "a3c344c2-dffd-44c7-b934-12f2f183f71e"
 authors = ["Cristina Moraru"]
 version = "0.2.0"
 
+[deps]
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+StringAlgorithms = "643b1d47-3f53-4b81-a7a3-63e902513088"
+
 [compat]
 julia = "1.10"
