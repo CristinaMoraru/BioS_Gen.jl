@@ -283,6 +283,34 @@ function generate_range(start::Int64, stop::Int64, step::Int64)
     return (vec_a, vec_b)
 end
 
+# I've updated the generate_range function, so that I can chose if the outputed ranges are overlaping or not
+# once I bring MicroProber as package here, then I can remove the above function
+function generate_range(start::Int64, stop::Int64, step::Int64, overlapping::Bool)
+    vec_a = Vector{Int64}()
+    vec_b = Vector{Int64}()
+
+    a = start
+
+    while a < stop
+        push!(vec_a, a)
+        b =  a + step -1
+
+        if b >= stop
+            b = stop
+        end
+
+        push!(vec_b, b)
+
+        if overlapping
+            a=b
+        else
+            a = b+1 
+        end        
+    end
+
+    return (vec_a, vec_b)
+end
+
 
 function df2dict(df::DataFrame, key::Symbol, value::Symbol)
     d = Dict{String, String}()
