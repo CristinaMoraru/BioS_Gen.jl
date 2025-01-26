@@ -1,5 +1,5 @@
 export PathsDT, TableP, ALLOWED_EXT
-export FnaP, FaaP, FastaQP, BamP, SamP, CramP, MmiP, TableP, TxtP, SkaniP, GffP
+export FnaP, FaaP, FastaQP, BamP, SamP, CramP, MmiP, TableP, TxtP, SkaniP, GffP, JlBinP, SafP
 
 """
     PathsDT
@@ -21,6 +21,8 @@ export FnaP, FaaP, FastaQP, BamP, SamP, CramP, MmiP, TableP, TxtP, SkaniP, GffP
     * TxtP, for text files with extension ".txt",
     * SkaniP, for Skani related files with extensions ".sketch", ".sketch.gz", ".sketch.bz2", ".sketch.xz"),
     * GffP, for General Feature Format files with extensions ".gff", ".gff3", ".gff.gz", ".gff3.gz", ".gff.bz2", ".gff3.bz2", ".gff.xz", ".gff3.xz", ".gtf", ".gtf.gz", ".gtf.bz2", ".gtf.xz"
+    * JlBinP, for binary files writen by Julia
+    * SafP, for simplified annoation Format (it is a special case of a Tab separated Table, with the following columns: GeneID, Chr, Start, End, Strand)
 
     # Constructor example
         FnaP("/path/to/seq.fasta)
@@ -40,10 +42,12 @@ const ALLOWED_EXT = Dict(
     "TableP" => (".csv", ".tsv", ".txt"),
     "TxtP" => (".txt",),
     "SkaniP" => (".sketch", ".sketch.gz", ".sketch.bz2", ".sketch.xz"),
-    "GffP" => (".gff", ".gff3", ".gff.gz", ".gff3.gz", ".gff.bz2", ".gff3.bz2", ".gff.xz", ".gff3.xz", ".gtf", ".gtf.gz", ".gtf.bz2", ".gtf.xz"))
+    "GffP" => (".gff", ".gff3", ".gff.gz", ".gff3.gz", ".gff.bz2", ".gff3.bz2", ".gff.xz", ".gff3.xz", ".gtf", ".gtf.gz", ".gtf.bz2", ".gtf.xz"),
+    "JlBinP" => (".binary", ".jls"),
+    "SafP" => (".saf",))
 
 
-for sym in [:FnaP, :FaaP, :FastaQP, :BamP, :SamP, :CramP, :MmiP, :TableP, :TxtP, :SkaniP, :GffP]
+for sym in [:FnaP, :FaaP, :FastaQP, :BamP, :SamP, :CramP, :MmiP, :TableP, :TxtP, :SkaniP, :GffP, :JlBinP, :SafP]
     eval(quote
         struct $sym <: PathsDT
             p::String
